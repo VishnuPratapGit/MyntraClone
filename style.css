@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", "Poppins", "Roboto Mono", "Nunito", "Concert One",
+    "Assistant";
+}
+
+.logo img {
+  height: 50px;
+  width: 50px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  width: 100%;
+  align-items: center;
+  padding-inline: 4rem;
+  height: 11vh;
+  font-family: "Poppins";
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 30em;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding-block: 32px;
+}
+
+nav a:hover {
+  border-bottom: 3px solid #f54e77;
+}
+
+nav sup {
+  font-size: 0.7em;
+  color: red;
+  font-weight: 600;
+}
+
+.searchbar {
+  border-radius: 4px;
+  background-color: #f5f5f6;
+  padding-inline: 10px;
+  display: flex;
+  width: 510px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.searchbar:hover {
+  border: 1px solid #e3e3e3;
+  background: none;
+}
+
+.searchbar span {
+  color: #909090;
+  font-size: 21px;
+}
+
+.searchbar input {
+  flex-grow: 1;
+  height: 40px;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.actionbar {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+}
+
+.actionbar span {
+  font-size: 23px;
+  font-weight: 200;
+}
+
+.actionText {
+  font-family: "Assistant";
+  font-weight: 700;
+  line-height: 10px;
+  font-size: 12px;
+}
