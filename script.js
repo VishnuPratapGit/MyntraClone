@@ -1,11 +1,7 @@
 const cartCount = document.querySelector(".cart-count");
-
 let cartDataIdArray = [];
 
 addMainScreenItem(items);  //add html content to main screen
-visiblityOfCartCount();    //toggles between visibility of cart caunt
-
-
 
 function addMainScreenItem(dataArray) {
     const itemsContainer = document.querySelector(".items-container");
@@ -29,11 +25,21 @@ function addMainScreenItem(dataArray) {
 }
 
 function visiblityOfCartCount() {
-    (cartDataIdArray.length == 0) ? (cartCount.style.visibility = "hidden") : (cartCount.style.visibility = "visible");
+    if (cartDataIdArray.length > 0) {
+        (cartCount.style.visibility = "visible");
+        cartCount.innerHTML = cartDataIdArray.length;
+    }
+    else { cartCount.style.visibility = "hidden" };
 }
 
 function cartDataId(dataId) {
     cartDataIdArray.push(dataId);
-    cartCount.innerHTML = cartDataIdArray.length;
+    localStorage.setItem("cartData", JSON.stringify(cartDataIdArray));
     visiblityOfCartCount()
+}
+
+window.onload = () => {
+    const cartData = localStorage.getItem("cartData");
+    cartDataIdArray = cartData ? JSON.parse(cartData) : [];
+    visiblityOfCartCount();
 }
