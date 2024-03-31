@@ -6,17 +6,24 @@
     "Assistant";
 }
 
+body {
+  margin-top: 15vh;
+}
+
 .logo img {
   height: 50px;
   width: 50px;
 }
 
 header {
+  background-color: white;
   display: flex;
   justify-content: space-between;
   gap: 50px;
   width: 100%;
   align-items: center;
+  position: fixed;
+  top: 0;
   padding-inline: 4rem;
   height: 11vh;
   font-family: "Poppins";
@@ -82,6 +89,10 @@ nav sup {
   align-items: center;
   text-align: center;
   gap: 25px;
+  cursor: pointer;
+  padding-right: 8px;
+  padding-top: 8px;
+  position: relative;
 }
 
 .actionbar span {
@@ -94,4 +105,103 @@ nav sup {
   font-weight: 700;
   line-height: 10px;
   font-size: 12px;
+}
+
+#cart {
+  text-decoration: none;
+  color: black;
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f54e77;
+  color: white;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  font-family: "Assistant";
+}
+
+/*main*/
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 40px auto;
+  width: 95%;
+}
+
+.item-container {
+  margin: 21px;
+  border-radius: 5px;
+  width: 200px;
+}
+.item-image {
+  width: 100%;
+}
+.rating {
+  font-size: 12px;
+  font-weight: 700;
+}
+.brand-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 15px;
+  color: #282c3f;
+}
+.item-name {
+  color: #535766;
+  font-size: 14px;
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+}
+.price {
+  font-size: 14px;
+  color: #282c3f;
+  margin: 10px 0px;
+  white-space: nowrap;
+}
+
+.current-price {
+  font-weight: 700;
+}
+
+.original-price {
+  text-decoration: line-through;
+  font-size: 12px;
+  margin-left: 5px;
+  color: #7e818c;
+  font-weight: 400;
+}
+
+.discount {
+  color: #ff905a;
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 15px;
+}
+
+.cart-button {
+  background-color: #1d955d;
+  border: none;
+  padding: 5px 15px;
+  color: white;
+  border-radius: 3px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.cart-button:hover {
+  background-color: #198754;
 }

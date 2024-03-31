@@ -16,7 +16,7 @@
   <body>
     <header>
       <div class="logo">
-        <img src="logo.webp" alt="IconImage" />
+        <img src="./images/logo.webp" alt="IconImage" />
       </div>
       <nav class="navbar">
         <a href="">Men</a>
@@ -31,21 +31,26 @@
         <input type="text" placeholder="search for products, brands and more" />
       </div>
       <action class="actionbar">
-        <div id="profile">
+        <div class="icon" id="profile">
           <span class="material-symbols-outlined"> person </span>
           <div class="actionText">Profile</div>
         </div>
-        <div id="wishlist">
+        <div class="icon" id="wishlist">
           <span class="material-symbols-outlined"> favorite </span>
           <div class="actionText">Wishlist</div>
         </div>
-        <div id="cart">
+        <a href="#" class="icon" id="cart">
           <span class="material-symbols-outlined"> shopping_bag </span>
           <div class="actionText">Bag</div>
-        </div>
+          <div class="cart-count">0</div>
+        </a>
       </action>
     </header>
-    <main></main>
+    <main>
+      <div class="items-container"></div>
+    </main>
     <footer></footer>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
