@@ -1,7 +1,63 @@
 const cartCount = document.querySelector(".cart-count");
+const cart = document.querySelector("#cart");
+const cartContainer = document.querySelector(".cart-container");
+
 let cartDataIdArray = [];
 
 addMainScreenItem(items);  //add html content to main screen
+
+cart.addEventListener("click", () => {
+    if (cartContainer.style.display == "block") {
+        cartContainer.style.display = "none";
+    }
+    else {
+        cartContainer.style.display = "block";
+        addCartScreenItem(cartDataIdArray);
+    }
+})
+
+function addCartScreenItem(cartDataIds) {
+    const cartItemDetails = document.querySelector(".cart-item-details");
+    let cartInnerHtmlData = ``;
+
+    cartDataIds.forEach((dataId) => {
+        const dataFromId = items.find((data) => data.id == dataId);
+        cartInnerHtmlData +=
+            `<div class="cart-item-template">
+                <div class="cart-item-image">
+                <img src="${dataFromId.image}" alt="ItemImage" />
+                </div>
+                <div class="template-content">
+                    <div class="cart-brand-name">${dataFromId.company}</div>
+                    <div class="cart-item-name">
+                    ${dataFromId.item_name}
+                    </div>
+                    <div class="cartitem-seller-name">Sold by: Truenet Commerce</div>
+                    <div class="cart-and-quantity">
+                        <div class="cartitem-size">Size: M</div>
+                        <div class="cartitem-quentity">Qty: 1</div>
+                    </div>
+                    <div class="cart-price">
+                        <span class="cartitem-current-price">Rs ${dataFromId.current_price}</span>
+                        <span class="cartitem-original-price">Rs ${dataFromId.original_price}</span>
+                        <span class="cartitem-discount">(${dataFromId.discount_percentage}% OFF)</span>
+                    </div>
+                    <div class="cartitem-return-tag">
+                        <span
+                        class="material-symbols-outlined return-symbol"
+                        id="return-symbol"
+                        >
+                        undo
+                        </span>
+                        <span>14 days</span>
+                        return availiable
+                    </div>
+                </div>
+            </div>`
+    })
+
+    cartItemDetails.innerHTML = cartInnerHtmlData;
+}
 
 function addMainScreenItem(dataArray) {
     const itemsContainer = document.querySelector(".items-container");
@@ -26,7 +82,7 @@ function addMainScreenItem(dataArray) {
 
 function visiblityOfCartCount() {
     if (cartDataIdArray.length > 0) {
-        (cartCount.style.visibility = "visible");
+        cartCount.style.visibility = "visible";
         cartCount.innerHTML = cartDataIdArray.length;
     }
     else { cartCount.style.visibility = "hidden" };
@@ -41,5 +97,7 @@ function cartDataId(dataId) {
 window.onload = () => {
     const cartData = localStorage.getItem("cartData");
     cartDataIdArray = cartData ? JSON.parse(cartData) : [];
+    addCartScreenItem(cartDataIdArray);
     visiblityOfCartCount();
 }
+
