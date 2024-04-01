@@ -49,8 +49,12 @@
   height: 100%;
 }
 
+.template-content {
+  flex-grow: 1;
+}
+
 .cart-brand-name {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: #282c3f;
 }
@@ -91,10 +95,12 @@
 }
 
 .cart-price {
+  display: flex;
   font-size: 14px;
   color: #282c3f;
   margin: 10px 0px;
   white-space: nowrap;
+  gap: 8px;
 }
 
 .cartitem-current-price {
@@ -103,8 +109,7 @@
 
 .cartitem-original-price {
   text-decoration: line-through;
-  font-size: 12px;
-  margin-left: 5px;
+  font-size: 14px;
   color: #7e818c;
   font-weight: 400;
 }
@@ -112,8 +117,7 @@
 .cartitem-discount {
   color: #ff905a;
   font-weight: 400;
-  font-size: 12px;
-  margin-left: 15px;
+  font-size: 14px;
 }
 
 .cartitem-return-tag {
@@ -134,4 +138,10 @@
   border-radius: 50%;
   border: 1px solid rgb(0, 0, 0);
   transform: rotatex(180deg);
+}
+
+#remove-cart-item {
+  font-size: 25px;
+  font-weight: 300;
+  cursor: pointer;
 }

@@ -40,7 +40,7 @@ function addCartScreenItem(cartDataIds) {
                     <div class="cart-price">
                         <span class="cartitem-current-price">Rs ${dataFromId.current_price}</span>
                         <span class="cartitem-original-price">Rs ${dataFromId.original_price}</span>
-                        <span class="cartitem-discount">(${dataFromId.discount_percentage}% OFF)</span>
+                        <span class="cartitem-discount">${dataFromId.discount_percentage}% OFF</span>
                     </div>
                     <div class="cartitem-return-tag">
                         <span
@@ -53,6 +53,7 @@ function addCartScreenItem(cartDataIds) {
                         return availiable
                     </div>
                 </div>
+                <span class="material-symbols-outlined" id="remove-cart-item" onclick="removeCartItem(${dataId})">close</span>
             </div>`
     })
 
@@ -92,6 +93,14 @@ function cartDataId(dataId) {
     cartDataIdArray.push(dataId);
     localStorage.setItem("cartData", JSON.stringify(cartDataIdArray));
     visiblityOfCartCount()
+}
+
+function removeCartItem(id) {
+    const indexOfCartDataIdArray = cartDataIdArray.indexOf(id);
+    cartDataIdArray.splice(indexOfCartDataIdArray, 1);
+    localStorage.setItem("cartData", JSON.stringify(cartDataIdArray));
+    addCartScreenItem(cartDataIdArray);
+    visiblityOfCartCount();
 }
 
 window.onload = () => {

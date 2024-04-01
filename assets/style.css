@@ -2,8 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Ubuntu", "Poppins", "Roboto Mono", "Nunito", "Concert One",
-    "Assistant";
+  font-family: "Assistant";
 }
 
 body {
@@ -26,7 +25,6 @@ header {
   top: 0;
   padding-inline: 4rem;
   height: 11vh;
-  font-family: "Poppins";
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -39,8 +37,8 @@ nav {
 nav a {
   text-decoration: none;
   color: black;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 700;
   text-transform: uppercase;
   padding-block: 32px;
 }
