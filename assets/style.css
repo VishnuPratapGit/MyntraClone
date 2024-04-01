@@ -37,11 +37,12 @@ nav {
 nav a {
   text-decoration: none;
   color: black;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding-block: 32px;
+  padding-block: 30px;
+  border-bottom: 3px solid transparent;
 }
 
 nav a:hover {
@@ -49,9 +50,10 @@ nav a:hover {
 }
 
 nav sup {
-  font-size: 0.7em;
+  font-size: 10px;
+  letter-spacing: normal;
   color: red;
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .searchbar {

@@ -83,6 +83,7 @@ function visiblityOfCartCount() {
 function cartDataId(dataId) {
     cartDataIdArray.push(dataId);
     localStorage.setItem("cartData", JSON.stringify(cartDataIdArray));
+    paymentDetails(cartDataIdArray);
     visiblityOfCartCount()
 }
 
@@ -90,7 +91,34 @@ function removeCartItem(id) {
     const indexOfCartDataIdArray = cartDataIdArray.indexOf(id);
     cartDataIdArray.splice(indexOfCartDataIdArray, 1);
     localStorage.setItem("cartData", JSON.stringify(cartDataIdArray));
+    paymentDetails(cartDataIdArray);
     addCartScreenItem(cartDataIdArray);
+    visiblityOfCartCount();
+}
+
+function paymentDetails(cartDataIds) {
+    const totalMRP = document.querySelector("#total-mrp");
+    const discountedMRP = document.querySelector("#discount-mrp");
+    const TOTAL = document.querySelector("#total-amount");
+
+    let originalPriceSum = 0;
+    let totalDiscountMRP = 0;
+    cartDataIds.forEach((id) => {
+        const dataObject = items.find((data) => data.id == id);
+        originalPriceSum += dataObject.original_price;
+        totalDiscountMRP += dataObject.current_price;
+    })
+    totalMRP.innerHTML = originalPriceSum;
+    discountedMRP.innerHTML = totalDiscountMRP;
+    let tp = originalPriceSum - totalDiscountMRP;
+    TOTAL.innerHTML = tp;
+}
+
+window.onload = () => {
+    const cartData = localStorage.getItem("cartData");
+    cartDataIdArray = cartData ? JSON.parse(cartData) : [];
+    addCartScreenItem(cartDataIdArray);
+    paymentDetails(cartDataIdArray);
     visiblityOfCartCount();
 }
 
@@ -107,9 +135,5 @@ cart.addEventListener("click", () => {
     }
 })
 
-window.onload = () => {
-    const cartData = localStorage.getItem("cartData");
-    cartDataIdArray = cartData ? JSON.parse(cartData) : [];
-    addCartScreenItem(cartDataIdArray);
-    visiblityOfCartCount();
-}
+
+
