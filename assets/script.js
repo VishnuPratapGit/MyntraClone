@@ -1,20 +1,32 @@
 const cartCount = document.querySelector(".cart-count");
 const cart = document.querySelector("#cart");
 const cartContainer = document.querySelector(".cart-container");
+const mainContainer = document.querySelector('.items-container');
 
 let cartDataIdArray = [];
 
 addMainScreenItem(items);  //add html content to main screen
 
-cart.addEventListener("click", () => {
-    if (cartContainer.style.display == "block") {
-        cartContainer.style.display = "none";
-    }
-    else {
-        cartContainer.style.display = "block";
-        addCartScreenItem(cartDataIdArray);
-    }
-})
+function addMainScreenItem(dataArray) {
+    const itemsContainer = document.querySelector(".items-container");
+    let innerHtmlData = ``;
+    dataArray.forEach((dataObject) => {
+        innerHtmlData += `<div class="item-container">
+        <img class="item-image" src="${dataObject.image}" alt="ItemImage" />
+        <div class="rating">${dataObject.rating.stars}⭐ | ${dataObject.rating.count}</div>
+        <div class="brand-name">${dataObject.company}</div>
+        <div class="item-name">${dataObject.item_name}</div>
+        <div class="price">
+        <span class="current-price">Rs ${dataObject.current_price}</span>
+        <span class="original-price">Rs ${dataObject.original_price}</span>
+        <span class="discount">(${dataObject.discount_percentage} OFF)</span>
+        </div>
+        <button class="cart-button" onclick="cartDataId(${dataObject.id})">Add to Bag</button>
+        </div>`
+
+    })
+    itemsContainer.innerHTML = innerHtmlData;
+}
 
 function addCartScreenItem(cartDataIds) {
     const cartItemDetails = document.querySelector(".cart-item-details");
@@ -60,27 +72,6 @@ function addCartScreenItem(cartDataIds) {
     cartItemDetails.innerHTML = cartInnerHtmlData;
 }
 
-function addMainScreenItem(dataArray) {
-    const itemsContainer = document.querySelector(".items-container");
-    let innerHtmlData = ``;
-    dataArray.forEach((dataObject) => {
-        innerHtmlData += `<div class="item-container">
-        <img class="item-image" src="${dataObject.image}" alt="ItemImage" />
-        <div class="rating">${dataObject.rating.stars}⭐ | ${dataObject.rating.count}</div>
-        <div class="brand-name">${dataObject.company}</div>
-        <div class="item-name">${dataObject.item_name}</div>
-        <div class="price">
-        <span class="current-price">Rs ${dataObject.current_price}</span>
-        <span class="original-price">Rs ${dataObject.original_price}</span>
-        <span class="discount">(${dataObject.discount_percentage} OFF)</span>
-        </div>
-        <button class="cart-button" onclick="cartDataId(${dataObject.id})">Add to Bag</button>
-        </div>`
-
-    })
-    itemsContainer.innerHTML = innerHtmlData;
-}
-
 function visiblityOfCartCount() {
     if (cartDataIdArray.length > 0) {
         cartCount.style.visibility = "visible";
@@ -103,10 +94,22 @@ function removeCartItem(id) {
     visiblityOfCartCount();
 }
 
+cart.addEventListener("click", () => {
+    if (cartContainer.style.display == "block") {
+        mainContainer.style.display = 'flex';
+        cartContainer.style.display = "none";
+    }
+    else {
+        cartContainer.style.display = "block";
+        addCartScreenItem(cartDataIdArray);
+        mainContainer.style.display = 'none';
+
+    }
+})
+
 window.onload = () => {
     const cartData = localStorage.getItem("cartData");
     cartDataIdArray = cartData ? JSON.parse(cartData) : [];
     addCartScreenItem(cartDataIdArray);
     visiblityOfCartCount();
 }
-

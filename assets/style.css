@@ -31,15 +31,16 @@ header {
 nav {
   display: flex;
   justify-content: space-between;
-  width: 30em;
+  width: 32em;
 }
 
 nav a {
   text-decoration: none;
   color: black;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 1px;
   padding-block: 32px;
 }
 
