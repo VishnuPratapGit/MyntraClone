@@ -21,7 +21,7 @@ function addMainScreenItem(dataArray) {
         <span class="original-price">Rs ${dataObject.original_price}</span>
         <span class="discount">(${dataObject.discount_percentage} OFF)</span>
         </div>
-        <button class="cart-button" onclick="cartDataId(${dataObject.id})">Add to Bag</button>
+        <button class="cart-button" onclick="cartDataId('${dataObject.id}')">Add to Bag</button>
         </div>`
 
     })
@@ -65,7 +65,7 @@ function addCartScreenItem(cartDataIds) {
                         return availiable
                     </div>
                 </div>
-                <span class="material-symbols-outlined" id="remove-cart-item" onclick="removeCartItem(${dataId})">close</span>
+                <span class="material-symbols-outlined" id="remove-cart-item" onclick="removeCartItem('${dataId}')">close</span>
             </div>`
     })
 
@@ -88,6 +88,8 @@ function cartDataId(dataId) {
 }
 
 function removeCartItem(id) {
+    console.log(id)
+    console.log(cartDataIdArray)
     const indexOfCartDataIdArray = cartDataIdArray.indexOf(id);
     cartDataIdArray.splice(indexOfCartDataIdArray, 1);
     localStorage.setItem("cartData", JSON.stringify(cartDataIdArray));
