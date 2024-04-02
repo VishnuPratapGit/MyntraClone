@@ -19,7 +19,7 @@ function addMainScreenItem(dataArray) {
         <div class="price">
         <span class="current-price">Rs ${dataObject.current_price}</span>
         <span class="original-price">Rs ${dataObject.original_price}</span>
-        <span class="discount">(${dataObject.discount_percentage} OFF)</span>
+        <span class="discount">(${dataObject.discount_percentage}% OFF)</span>
         </div>
         <button class="cart-button" onclick="addToCart('${dataObject.id}')">Add to Bag</button>
         </div>`
