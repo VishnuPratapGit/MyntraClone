@@ -5,7 +5,7 @@ const mainContainer = document.querySelector('.items-container');
 
 let cartDataIdArray = [];
 
-addMainScreenItem(items);  //add html content to main screen
+addMainScreenItem(items);  //add html content to main screen from items data array.
 
 function addMainScreenItem(dataArray) {
     const itemsContainer = document.querySelector(".items-container");
@@ -21,56 +21,66 @@ function addMainScreenItem(dataArray) {
         <span class="original-price">Rs ${dataObject.original_price}</span>
         <span class="discount">(${dataObject.discount_percentage} OFF)</span>
         </div>
-        <button class="cart-button" onclick="cartDataId('${dataObject.id}')">Add to Bag</button>
+        <button class="cart-button" onclick="addToCart('${dataObject.id}')">Add to Bag</button>
         </div>`
 
     })
     itemsContainer.innerHTML = innerHtmlData;
 }
 
-function addCartScreenItem(cartDataIds) {
+function addItemOfId(id) {
     const cartItemDetails = document.querySelector(".cart-item-details");
-    let cartInnerHtmlData = ``;
-
-    cartDataIds.forEach((dataId) => {
-        const dataFromId = items.find((data) => data.id == dataId);
-        cartInnerHtmlData +=
-            `<div class="cart-item-template" id="${dataId}">
-                <div class="cart-item-image">
-                <img src="${dataFromId.image}" alt="ItemImage" />
-                </div>
-                <div class="template-content">
-                    <div class="cart-brand-name">${dataFromId.company}</div>
-                    <div class="cart-item-name">
-                    ${dataFromId.item_name}
-                    </div>
-                    <div class="cartitem-seller-name">Sold by: Truenet Commerce</div>
-                    <div class="cart-and-quantity">
-                        <div class="cartitem-size">Size: M</div>
-                        <div class="cartitem-quentity">Qty: 1</div>
-                    </div>
-                    <div class="cart-price">
-                        <span class="cartitem-current-price">Rs ${dataFromId.current_price}</span>
-                        <span class="cartitem-original-price">Rs ${dataFromId.original_price}</span>
-                        <span class="cartitem-discount">${dataFromId.discount_percentage}% OFF</span>
-                    </div>
-                    <div class="cartitem-return-tag">
-                        <span
-                        class="material-symbols-outlined return-symbol"
-                        id="return-symbol"
-                        >
-                        undo
-                        </span>
-                        <span>14 days</span>
-                        return availiable
-                    </div>
-                </div>
-                <span class="material-symbols-outlined" id="remove-cart-item" onclick="removeCartItem('${dataId}')">close</span>
-            </div>`
-    })
-
-    cartItemDetails.innerHTML = cartInnerHtmlData;
+    const dataFromId = items.find((data) => data.id == id);
+    let cartInnerHtmlData =
+        `<div class="cart-item-template" id="a${id}">
+        <div class="cart-item-image">
+        <img src="${dataFromId.image}" alt="ItemImage" />
+        </div>
+        <div class="template-content">
+            <div class="cart-brand-name">${dataFromId.company}</div>
+            <div class="cart-item-name">
+            ${dataFromId.item_name}
+            </div>
+            <div class="cartitem-seller-name">Sold by: Truenet Commerce</div>
+            <div class="cart-and-quantity">
+                <div class="cartitem-size">Size: M</div>
+                <div class="cartitem-quantity">1</div>
+            </div>
+            <div class="cart-price">
+                <span class="cartitem-current-price">Rs ${dataFromId.current_price}</span>
+                <span class="cartitem-original-price">Rs ${dataFromId.original_price}</span>
+                <span class="cartitem-discount">${dataFromId.discount_percentage}% OFF</span>
+            </div>
+            <div class="cartitem-return-tag">
+                <span
+                class="material-symbols-outlined return-symbol"
+                id="return-symbol"
+                >
+                undo
+                </span>
+                <span>14 days</span>
+                return availiable
+            </div>
+        </div>
+        <span class="material-symbols-outlined" id="remove-cart-item" onclick="removeCartItem('${id}')">close</span>
+    </div>`;
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = cartInnerHtmlData;
+    cartItemDetails.appendChild(tempElement.firstChild);
 }
+
+function addCartScreenItem(cartDataIds) {
+    cartDataIds.forEach((dataId) => {
+        const cartElement = document.getElementById(`a${dataId}`);
+        if (!cartElement) {
+            addItemOfId(dataId);
+        }
+        else {
+            const cartItemQuentity = cartElement.querySelector(".cartitem-quantity");
+            cartItemQuentity.innerHTML = Number(cartItemQuentity.innerHTML) + 1;
+        }
+    });
+};
 
 function visiblityOfCartCount() {
     if (cartDataIdArray.length > 0) {
@@ -80,21 +90,35 @@ function visiblityOfCartCount() {
     else { cartCount.style.visibility = "hidden" };
 }
 
-function cartDataId(dataId) {
-    cartDataIdArray.push(dataId);
-    localStorage.setItem("cartData", JSON.stringify(cartDataIdArray));
-    paymentDetails(cartDataIdArray);
-    visiblityOfCartCount()
+function addToCart(dataId) {
+    cartDataIdArray.push(dataId); //add item id to array first
+    localStorage.setItem("cartData", JSON.stringify(cartDataIdArray)); //also change local storage
+
+    const cartItemQuantity = document.querySelector(`#a${dataId} .cartitem-quantity`);
+
+    if (!cartItemQuantity) {
+        addItemOfId(dataId);
+    }
+    else {
+        cartItemQuantity.innerHTML = Number(cartItemQuantity.innerHTML) + 1;
+    }
+    paymentDetails(cartDataIdArray);  //update payment section
+    visiblityOfCartCount();  //update kart counter
 }
 
 function removeCartItem(id) {
-    console.log(id)
-    console.log(cartDataIdArray)
     const indexOfCartDataIdArray = cartDataIdArray.indexOf(id);
     cartDataIdArray.splice(indexOfCartDataIdArray, 1);
     localStorage.setItem("cartData", JSON.stringify(cartDataIdArray));
+
+    const cartItemToRemove = document.getElementById(`a${id}`);
+    const cartItemQuantity = cartItemToRemove.querySelector(".cartitem-quantity");
+
+    const qty = Number(cartItemQuantity.innerHTML) - 1;
+
+    (qty == 0) ? cartItemToRemove.remove() : (cartItemQuantity.innerHTML = qty);
+
     paymentDetails(cartDataIdArray);
-    addCartScreenItem(cartDataIdArray);
     visiblityOfCartCount();
 }
 
@@ -131,11 +155,7 @@ cart.addEventListener("click", () => {
     }
     else {
         cartContainer.style.display = "block";
-        addCartScreenItem(cartDataIdArray);
         mainContainer.style.display = 'none';
 
     }
 })
-
-
-
