@@ -35,7 +35,7 @@ function addCartScreenItem(cartDataIds) {
     cartDataIds.forEach((dataId) => {
         const dataFromId = items.find((data) => data.id == dataId);
         cartInnerHtmlData +=
-            `<div class="cart-item-template">
+            `<div class="cart-item-template" id="${dataId}">
                 <div class="cart-item-image">
                 <img src="${dataFromId.image}" alt="ItemImage" />
                 </div>
@@ -101,17 +101,17 @@ function paymentDetails(cartDataIds) {
     const discountedMRP = document.querySelector("#discount-mrp");
     const TOTAL = document.querySelector("#total-amount");
 
-    let originalPriceSum = 0;
+    let totalOriginalMRP = 0;
     let totalDiscountMRP = 0;
     cartDataIds.forEach((id) => {
         const dataObject = items.find((data) => data.id == id);
-        originalPriceSum += dataObject.original_price;
+        totalOriginalMRP += dataObject.original_price;
         totalDiscountMRP += dataObject.current_price;
     })
-    totalMRP.innerHTML = originalPriceSum;
-    discountedMRP.innerHTML = totalDiscountMRP;
-    let tp = originalPriceSum - totalDiscountMRP;
-    TOTAL.innerHTML = tp;
+    totalMRP.innerHTML = totalOriginalMRP.toLocaleString();
+    discountedMRP.innerHTML = totalDiscountMRP.toLocaleString();
+    let tp = totalOriginalMRP - totalDiscountMRP;
+    TOTAL.innerHTML = tp.toLocaleString();;
 }
 
 window.onload = () => {

@@ -34,8 +34,8 @@
 }
 
 .payment-details {
-  width: 25%;
-  padding: 24px 0px 0px 16px;
+  width: 22%;
+  padding: 32px 0px 0px 16px;
 }
 /* ------------------------------------------------------------ */
 /* cart item template */
@@ -159,6 +159,7 @@
 /* cart checkout template */
 .order-details-template {
   font-size: 14px;
+  border-top: 1px solid #f2f2f2;
 }
 
 .price-details {
@@ -169,8 +170,41 @@
 }
 
 .price-details-text {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 12px;
   line-height: 16px;
+}
+
+#total-mrp::before {
+  content: "₹";
+  margin-right: 1px;
+}
+
+#discount-mrp {
+  color: #03a685;
+}
+#discount-mrp::before {
+  content: "-₹";
+  margin-right: 1px;
+  color: #03a685;
+}
+
+#coupon-discount {
+  color: #ff3f6c;
+  cursor: pointer;
+}
+
+#shipping-fee::before {
+  content: "₹79";
+  margin-right: 5px;
+  text-decoration: line-through;
+  color: black;
+}
+
+#platform-fee,
+#shipping-fee {
+  color: #03a685;
 }
 
 .know-more {
@@ -178,9 +212,10 @@
   margin-left: 8px;
   color: #ff3f6c;
   font-weight: 700;
+  cursor: pointer;
 }
 
-.total-amount {
+#total-amount-text {
   font-size: 15px;
   font-weight: 700;
   line-height: 16px;
@@ -190,11 +225,19 @@
   margin-bottom: 15px;
 }
 
+#total-amount::before {
+  content: "₹";
+  margin-right: 2px;
+  color: black;
+  font-weight: 500;
+}
+
 .place-order-btn {
   font-size: 14px;
   padding: 10px 16px;
   width: 100%;
   letter-spacing: 1px;
+  text-align: center;
   font-weight: 700;
   border-radius: 2px;
   border-width: 0px;
