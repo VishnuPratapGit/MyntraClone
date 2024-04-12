@@ -258,7 +258,7 @@ nav sup {
   }
 }
 
-@media screen and (max-width: 572px) {
+@media screen and (max-width: 600px) {
   .items-container {
     grid-template-columns: repeat(2, minmax(20px, 1fr));
   }
