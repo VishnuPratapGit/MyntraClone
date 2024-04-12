@@ -271,6 +271,7 @@ nav sup {
 
   nav {
     width: 380px;
+    left: 10px;
   }
 
   .searchbar {
