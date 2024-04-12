@@ -253,3 +253,37 @@ nav sup {
     margin-top: 8px;
   }
 }
+
+@media screen and (max-width: 572px) {
+  .items-container {
+    grid-template-columns: repeat(2, minmax(20px, 1fr));
+  }
+
+  header {
+    padding: 9px;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  nav {
+    width: 380px;
+  }
+
+  .searchbar {
+    height: 35px;
+  }
+
+  .actionText {
+    font-size: 10px;
+  }
+
+  .actionbar {
+    gap: 5px;
+  }
+
+  .logo img {
+    height: 30px;
+    width: 30px;
+    margin-top: 10px;
+  }
+}
