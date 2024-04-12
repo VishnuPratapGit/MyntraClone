@@ -278,11 +278,17 @@ nav sup {
   }
 
   .actionText {
+    display: none;
     font-size: 10px;
   }
 
   .actionbar {
+    margin-top: 7px;
     gap: 5px;
+  }
+
+  .actionbar span {
+    font-size: 25px;
   }
 
   .logo img {
