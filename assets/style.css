@@ -5,6 +5,10 @@
   font-family: "Assistant";
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin-top: 15vh;
 }

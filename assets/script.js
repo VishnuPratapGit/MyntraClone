@@ -150,12 +150,11 @@ window.onload = () => {
 
 cart.addEventListener("click", () => {
     if (cartContainer.style.display == "block") {
-        mainContainer.style.display = 'flex';
+        mainContainer.style.display = 'grid';
         cartContainer.style.display = "none";
     }
     else {
         cartContainer.style.display = "block";
         mainContainer.style.display = 'none';
-
     }
 })

@@ -251,3 +251,33 @@
 }
 
 /* ------------------------------------------------------------ */
+
+@media screen and (max-width: 572px) {
+  .cart-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .template-content {
+    flex-grow: 1;
+    width: 0;
+  }
+
+  .cart-item-image {
+    width: 25%;
+  }
+
+  .payment-details {
+    width: 100%;
+    padding: 3px 10px 10px 10px;
+  }
+
+  .cart-item-details {
+    padding: 20px 0px 0px 0px;
+    width: 100%;
+  }
+
+  .order-details-template {
+    display: none;
+  }
+}
