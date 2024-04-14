@@ -8,3 +8,17 @@ searchInput.addEventListener("focus", function () {
 searchInput.addEventListener("blur", function () {
     searchBar.classList.remove("focused");
 });
+
+
+// searh items based on input
+const itemName = document.querySelectorAll('.item-name');
+
+function searchItems() {
+    itemName.forEach((item, index) => {
+        if (item.textContent.toUpperCase().indexOf(searchInput.value.toUpperCase()) > -1) {
+            item.parentElement.style.display = "";
+        } else {
+            item.parentElement.style.display = "none";
+        }
+    })
+}
