@@ -16,9 +16,9 @@ const itemName = document.querySelectorAll('.item-name');
 function searchItems() {
     itemName.forEach((item, index) => {
         if (item.textContent.toUpperCase().indexOf(searchInput.value.toUpperCase()) > -1) {
-            item.parentElement.style.display = "";
+            item.parentElement.parentElement.style.display = "";
         } else {
-            item.parentElement.style.display = "none";
+            item.parentElement.parentElement.style.display = "none";
         }
     })
 }

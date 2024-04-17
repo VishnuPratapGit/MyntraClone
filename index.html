@@ -91,6 +91,15 @@
   </div>
 
   <main>
+    <div class="carousels">
+      <div class="carousel-container">
+        <img src="assets/images/courosal2.png" alt="carousel">
+        <img src="assets/images/courosal3.png" alt="carousel">
+        <img src="assets/images/courosal4.png" alt="carousel">
+        <img src="assets/images/courosal5.png" alt="carousel">
+        <img src="assets/images/courosal6.png" alt="carousel">
+      </div>
+    </div>
     <div class="items-container"></div>
   </main>
   <footer></footer>
@@ -103,18 +112,21 @@
       const itemsContainer = document.querySelector(".items-container");
       let innerHtmlData = ``;
       dataArray.forEach((dataObject) => {
-        innerHtmlData += `<div class="item-container">
-            <img class="item-image" src="${dataObject.image.image1}" alt="ItemImage" />
-            <div class="rating">${dataObject.rating.stars}⭐ | ${dataObject.rating.count}</div>
-            <div class="brand-name">${dataObject.company}</div>
-            <div class="item-name">${dataObject.item_name}</div>
-            <div class="price">
-            <span class="current-price">Rs ${dataObject.current_price}</span>
-            <span class="original-price">Rs ${dataObject.original_price}</span>
-            <span class="discount">(${dataObject.discount_percentage}% OFF)</span>
-            </div>
-            <button class="cart-button" onclick="addToCart('${dataObject.id}')">Add to Bag</button>
-            </div>`
+        innerHtmlData +=
+          `<div class="item-container">
+              <img class="item-image" src="${dataObject.image.image1}" alt="ItemImage" />
+              <div class="item-text-container">
+                <div class="rating">${dataObject.rating.stars}⭐ | ${dataObject.rating.count}</div>
+                <div class="brand-name">${dataObject.company}</div>
+                <div class="item-name">${dataObject.item_name}</div>
+                <div class="price">
+                <span class="current-price">Rs ${dataObject.current_price}</span>
+                <span class="original-price">Rs ${dataObject.original_price}</span>
+                <span class="discount">(${dataObject.discount_percentage}% OFF)</span>
+                </div>
+                <button class="cart-button" onclick="addToCart('${dataObject.id}')">Add to Bag</button>
+              </div>
+          </div>`
       })
       itemsContainer.innerHTML = innerHtmlData;
     }
