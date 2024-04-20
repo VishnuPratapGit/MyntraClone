@@ -1,7 +1,7 @@
 const cartCount = document.querySelector(".cart-count");
 const cart = document.querySelector("#cart");
 const cartContainer = document.querySelector(".cart-container");
-const mainContainer = document.querySelector('.items-container');
+const mainContainer = document.querySelector('.main');
 
 let cartDataIdArray = [];
 
