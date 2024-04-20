@@ -96,15 +96,28 @@
   <!-------------------------------------------------main------------------------------------------------->
 
   <main>
-    <div class="carousels">
-      <div class="carousel-container">
+
+    <div class="carousel-container">
+      <section class="carousel-slide">
+        <img src="assets/images/courosal1.png" alt="carousel">
         <img src="assets/images/courosal2.png" alt="carousel">
         <img src="assets/images/courosal3.png" alt="carousel">
         <img src="assets/images/courosal4.png" alt="carousel">
         <img src="assets/images/courosal5.png" alt="carousel">
         <img src="assets/images/courosal6.png" alt="carousel">
-      </div>
+        <img src="assets/images/courosal1.png" alt="carousel">
+      </section>
+      <section class="radio-buttons">
+        <input type="radio" id="r1" name="switch" value="r1" checked>
+        <input type="radio" id="r2" name="switch" value="r2">
+        <input type="radio" id="r3" name="switch" value="r3">
+        <input type="radio" id="r4" name="switch" value="r4">
+        <input type="radio" id="r5" name="switch" value="r5">
+        <input type="radio" id="r6" name="switch" value="r6">
+        <input type="radio" id="r7" name="switch" value="r7" style="visibility: hidden;">
+      </section>
     </div>
+
     <div class="items-container"></div>
   </main>
   <!------------------------------------------------footer------------------------------------------------>
@@ -112,6 +125,7 @@
 
   <!------------------------------------------------scripts----------------------------------------------->
 
+  <script src="assets/scripts/carousel.js"></script>
   <script src="assets/scripts/data.js"></script>
   <script src="assets/scripts/main.js"></script>
   <script>
